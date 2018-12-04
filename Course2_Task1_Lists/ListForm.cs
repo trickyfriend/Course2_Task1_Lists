@@ -27,37 +27,20 @@ namespace Course2_Task1_Lists
             set { list = value; }
         }
 
-        static int negativeCount;
-        public static int NegativeCount
-        {
-            get { return negativeCount; }
-            set { negativeCount = value; }
-        }
-
         private void PrintListToListTextBox()
         {
-            MyNode h = ListProperty.Head;
-            for (int i = 0; i < ListProperty.Count; i++)
-            {
-                if (h.Val < 0)
-                    NegativeCount++;
-                ListTextBox.Text += ((h.Val) + "\r\n");
-                h = h.Next;
-            }
+            string[] answer = list.FormatAnswer();
+            for (int i = 0; i < answer.Length; i++) 
+                ListTextBox.Text += (answer[i] + "\r\n");
         }
 
         private void PrintResultToResultTextBox()
         {
-            MyNode h = ListProperty.Head;
-            int negativeLeft = NegativeCount;
-            for (int i = 0; i < ListProperty.Count; i++)
-            {
+            string[] values = list.FormatAnswer();
+            string[] negatives = list.CountNegative();
 
-                if (h.Val < 0)
-                    negativeLeft--;
-                ResultTextBox.Text += ((h.Val) + ";   Left: " + negativeLeft + "\r\n");
-                h = h.Next;
-            }
+            for (int i = 0; i < values.Length; i++)
+                ResultTextBox.Text += (values[i] + ";   Left: " + negatives[i] + "\r\n");
         }
 
         private void inputButton_Click(object sender, EventArgs e)
